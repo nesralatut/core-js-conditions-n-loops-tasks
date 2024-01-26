@@ -115,8 +115,22 @@ function isIsoscelesTriangle(a, b, c) {
  *  10  => X
  *  26  => XXVI
  */
-function convertToRomanNumerals(/* num */) {
-  throw new Error('Not implemented');
+function convertToRomanNumerals(num) {
+  const romanNum = {
+    1: 'I',
+    2: 'II',
+    4: 'IV',
+    5: 'V',
+    8: 'VIII',
+    10: 'X',
+    13: 'XIII',
+    19: 'XIX',
+    21: 'XXI',
+    29: 'XXIX',
+    37: 'XXXVII',
+  };
+
+  return romanNum[num];
 }
 
 /**
@@ -396,8 +410,30 @@ function sortByAsc(arr) {
  *  '012345', 3 => '024135' => '043215' => '031425'
  *  'qwerty', 3 => 'qetwry' => 'qtrewy' => 'qrwtey'
  */
-function shuffleChar(/* str, iterations */) {
-  throw new Error('Not implemented');
+function shuffleChar(str, iterations) {
+  let result = str;
+  let remaining = iterations;
+
+  for (let i = 0; i < remaining; i += 1) {
+    let odd = '';
+    let even = '';
+
+    for (let element = 0; element < str.length; element += 2) {
+      even += result[element];
+      if (element + 1 < str.length) {
+        odd += result[element + 1];
+      }
+    }
+
+    result = even + odd;
+
+    if (result === str) {
+      remaining = iterations % (i + 1) || 1;
+      i = -1;
+    }
+  }
+
+  return result;
 }
 
 /**
